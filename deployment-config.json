@@ -1,0 +1,62 @@
+{
+    "kind": "DeploymentConfig",
+    "apiVersion": "v1beta1",
+    "metadata": {
+        "name": "nohaservletcounter-deployment",
+    },
+    "triggers": [
+        {
+            "type": "ImageChange",
+            "imageChangeParams": {
+                "automatic": true,
+                "containerNames": [
+                    "nohaservletcounter"
+                ],
+                "from": {
+                    "name": "nohaservletcounter-image"
+                },
+                "tag": "latest"
+            }
+        }
+    ],
+    "template": {
+        "strategy": {
+            "type": "Recreate"
+        },
+        "controllerTemplate": {
+            "replicas": 3,
+            "replicaSelector": {
+                "name": "nohaservletcounter"
+            },
+            "podTemplate": {
+                "desiredState": {
+                    "manifest": {
+                        "version": "v1beta2",
+                        "id": "",
+                        "volumes": null,
+                        "containers": [
+                            {
+                                "name": "nohaservletcounter",
+                                "image": "nohaservletcounter-image",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "imagePullPolicy": "PullIfNotPresent",
+                            }
+                        ],
+                        "restartPolicy": {
+                            "always": {}
+                        },
+                        "dnsPolicy": "ClusterFirst"
+                    }
+                },
+                "labels": {
+                    "name": "nohaservletcounter"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "kind": "Route",
+    "apiVersion": "v1beta1",
+    "metadata": {
+        "name": "nohaservletcounter-route",
+    },
+    "id": "nohaservletcounter-route",
+    "host": "nohsc.cloudapps.example.com",
+    "serviceName": "nohsc-service"
+}

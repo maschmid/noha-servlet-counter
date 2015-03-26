@@ -1,0 +1,34 @@
+{
+    "kind": "BuildConfig",
+    "apiVersion": "v1beta1",
+    "metadata": {
+        "name": "nohaservletcounterbld",
+    },
+    "parameters": {
+        "source": {
+            "type": "Git",
+            "git": {
+                "uri": "https://github.com/maschmid/noha-servlet-counter.git"
+            }
+        },
+        "strategy": {
+            "type": "STI",
+            "stiStrategy": {
+                "image": "docker-registry.usersys.redhat.com/cloud_enablement/openshift-jboss-eap:6.4",
+            }
+        },
+        "output": {
+            "to": {
+                "name": "nohaservletcounter-image"
+            }
+        }
+    },
+	"triggers": [
+		{
+			"generic": {
+				"secret": "secret101"
+			},
+			"type": "generic"
+		}
+	]
+}

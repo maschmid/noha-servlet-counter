@@ -1,0 +1,12 @@
+{
+    "kind": "Service",
+    "id": "nohsc-service",
+    "apiVersion": "v1beta1",
+    "port": 80,
+    "protocol": "TCP",
+    "selector": {
+        "name": "nohaservletcounter"
+    },
+    "containerPort": 0,
+    "sessionAffinity": "None"
+}
